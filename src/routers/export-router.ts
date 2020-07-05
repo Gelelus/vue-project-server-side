@@ -1,6 +1,4 @@
-import toDoRouter from './toDo'
+import userRouter from "../routers/user";
+import toDoRouter from "./toDo";
 
-
-export {
-    toDoRouter,
-};
+export { toDoRouter, userRouter };
