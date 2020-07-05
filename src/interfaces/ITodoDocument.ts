@@ -4,4 +4,5 @@ export interface ITodoDocument extends Document {
   name: string;
   description: string;
   date: Date;
+  todoStatus: boolean;
 }
