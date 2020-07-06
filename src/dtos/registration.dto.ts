@@ -8,8 +8,6 @@ const validationUserSchema = Joi.object({
       minDomainSegments: 2,
     })
     .required(),
-
-  name: Joi.string().alphanum().min(3),
 });
 
 export default validationUserSchema;

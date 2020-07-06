@@ -6,16 +6,16 @@ const add = async function (data: { password: string; email: string }) {
   if (userTest) {
     throw new Error("Email already exists");
   }
+  console.log(data, 'registarate')
   const user = new User(data);
 
   const token = await user.generateAuthToken();
   await user.save();
 
   return {
-    idToken: token,
-    localId: user._id,
+    token: token,
+    id: user._id,
     email: user.email,
-    expiresIn: 3600,
     avatarUrl: user.avatarImg,
     firstName: user.firstName,
     secondName: user.secondName,
@@ -36,7 +36,6 @@ const get = async function (id: string) {
     secondName: user.secondName,
     date: user.date,
     phoneNumber: user.phoneNumber,
-    recipes: user.recipes,
   };
 };
 
@@ -79,8 +78,8 @@ const del = async function (id: string) {
 };
 
 const login = async function (data: { password: string; email: string }) {
+  console.log(data)
   const user = await User.findByCredentials(data.email, data.password);
-
   const token = await user.generateAuthToken();
 
   return {
