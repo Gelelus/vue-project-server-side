@@ -11,6 +11,6 @@ const mainRouter = Router();
 mainRouter.use(express.json());
 mainRouter.use(options);
 mainRouter.use("/todo", router.toDoRouter);
-
+mainRouter.use("/users", router.userRouter);
 
 export default mainRouter;
