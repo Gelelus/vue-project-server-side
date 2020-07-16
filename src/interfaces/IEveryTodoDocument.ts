@@ -1,7 +1,9 @@
 import { Document } from "mongoose";
 
-export interface ITodoDocument extends Document {
+export interface IEveryTodoDocument extends Document {
   name: string;
   description: string;
   date: Number | Date;
+  todoType: string;
+  todoChecked: Boolean;
 }

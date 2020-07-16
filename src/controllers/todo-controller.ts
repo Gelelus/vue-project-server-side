@@ -6,7 +6,7 @@ class TodoController {
 
   static addTodo: RequestHandler = async (req, res) => {
     try {   
-      const result = await service.add(req.body);
+      const result = await service.addTodo(req.body);
       res.status(201).send(result);
     } catch (e) {
       res.status(400).send({ error: e.message });
@@ -15,7 +15,7 @@ class TodoController {
 
   static deleteTodo: RequestHandler = async (req, res) => {
     try {
-      const result = await service.del(req.params.id);
+      const result = await service.delTodo(req.params.id);
       res.status(201).send(result);
     } catch (e) {
       res.status(400).send({ error: e.message });
@@ -24,7 +24,7 @@ class TodoController {
 
   static updateTodo: RequestHandler = async (req, res) => {
     try {
-      const result = await service.update(req.body);
+      const result = await service.updateTodo(req.body);
       res.status(201).send(result);
     } catch (e) {
       res.status(400).send({ error: e.message });
@@ -35,7 +35,16 @@ class TodoController {
 
   static getTodo: RequestHandler = async (req, res) => {
     try {
-      const result = await service.get(req.params.id);
+      const result = await service.getTodo(req.params.id);
+      res.send(result);
+    } catch (e) {
+      res.status(400).send({ error: e.message });
+    }
+  };
+
+  static getTodosOnMonth: RequestHandler = async (req, res) => {
+    try {
+      const result = await service.getMonthTodos(req.query);
       res.send(result);
     } catch (e) {
       res.status(400).send({ error: e.message });
@@ -44,7 +53,7 @@ class TodoController {
 
   static getTodos: RequestHandler = async (_req, res) => {
     try {
-      const result = await service.getAll();
+      const result = await service.getTodayTodos();
       res.send(result);
     } catch (e) {
       res.status(400).send({ error: e.message });

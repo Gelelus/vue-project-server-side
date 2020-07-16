@@ -1,24 +1,21 @@
 import { Schema, model } from "mongoose";
 import { ITodoDocument } from "../interfaces/ITodoDocument";
 
-
-const todoSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
+const todoSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    date: { type: Date, required: true },
   },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  todoStatus: {
-    type: Boolean,
-    default: false
-  },
-  date: { type: Date, default: Date.now },
-});
-
+  { versionKey: false }
+);
 
 export default model<ITodoDocument>("Todo", todoSchema);
