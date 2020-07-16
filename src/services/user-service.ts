@@ -1,7 +1,7 @@
 import { IUserDocument } from "../interfaces/IUserDocument";
 import User from "../models/user";
 
-const add = async function (data: { password: string; email: string }) {
+const addUser = async function (data: { password: string; email: string }) {
   const userTest = await User.findOne({ email: data.email });
   if (userTest) {
     throw new Error("Email already exists");
@@ -24,7 +24,7 @@ const add = async function (data: { password: string; email: string }) {
   };
 };
 
-const get = async function (id: string) {
+const getUser = async function (id: string) {
   let user = await User.findById(id);
   if (!user) {
     throw new Error("user doesn't exists");
@@ -39,11 +39,11 @@ const get = async function (id: string) {
   };
 };
 
-const getAll = async function () {
+const getAllUser = async function () {
   return await User.find();
 };
 
-const update = async function (
+const updateUser = async function (
   data: {
     firstName: string;
     passwords: { password: string; secondPassword: string };
@@ -73,7 +73,7 @@ const update = async function (
   };
 };
 
-const del = async function (id: string) {
+const delUser = async function (id: string) {
   return await User.findByIdAndDelete(id);
 };
 
@@ -97,10 +97,10 @@ const login = async function (data: { password: string; email: string }) {
 
 
 export default {
-  add,
-  get,
-  update,
-  del,
-  getAll,
+  addUser,
+  getUser,
+  updateUser,
+  delUser,
+  getAllUser,
   login,
 };
